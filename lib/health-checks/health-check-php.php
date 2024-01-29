@@ -3,6 +3,14 @@
 class WP_Audit_Tool_Health_Check_PHP 
 {
     public static function results($info) {
+
+        $ip = !empty($_SERVER[ 'SERVER_ADDR' ]) ? $_SERVER[ 'SERVER_ADDR' ] : (!empty($_SERVER[ 'LOCAL_ADDR' ]) ? $_SERVER[ 'LOCAL_ADDR' ] : '');
+        $info['wp-server']['fields']['server_ip'] = [
+            'label' => __('Server IP Address', 'wp-audit-tool'),
+            'value' => $ip,
+            'debug' => $ip,
+        ];
+        
         $info['wp-server']['fields']['php_ini_loaded_file'] = [
             'label' => __('PHP.ini loaded file', 'wp-audit-tool'),
             'value' => php_ini_loaded_file(),

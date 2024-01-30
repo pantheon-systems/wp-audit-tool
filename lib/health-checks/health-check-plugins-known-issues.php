@@ -31,6 +31,15 @@ class WP_Audit_Tool_Health_Check_Plugins_Known_Issues
 	{
 		$fields = [];
 
+		if (empty($plugins)) {
+			$fields[] = [
+				'label' => '',
+				'value' => 'No plugins with known issues detected.',
+			];
+
+			return $fields;
+		}
+
 		foreach ($plugins as $plugin => $plugin_data) {
 			$actives[$plugin] = $plugin_data['active'];
 			$severities[$plugin] = $plugin_data['severity'];

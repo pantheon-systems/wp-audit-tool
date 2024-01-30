@@ -523,6 +523,12 @@ class WP_Audit_Tool_Health_Check_Plugins_Known_Issues
 				'url' => 'https://docs.pantheon.io/plugins-known-issues#caching-plugins',
 				'severity' => 1,
 			],
+			'wp-phpmyadmin-extension' => [
+				'slug' => 'wp-phpmyadmin-extension',
+				'title' => 'WP phpMyAdmin',
+				'url' => 'https://docs.pantheon.io/plugins-known-issues#wp-phpmyadmin',
+				'severity' => 1,
+			],
 			'yith-woocommerce-request-a-quote' => [
 				'slug' => 'yith-woocommerce-request-a-quote',
 				'title' => 'YITH WooCommerce Request a Quote',

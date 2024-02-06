@@ -5,7 +5,7 @@ class WP_Audit_Tool_Health_Check_Env_Variables
 	public static function results($info)
 	{
 		$fields = self::get_env_fields();
-		$info['sys-cron'] = [
+		$info['env-variables'] = [
 			'label' => __('Environment Variables', 'wp-audit-tool'),
 			'fields' => $fields,
 		];

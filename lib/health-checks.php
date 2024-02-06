@@ -8,6 +8,8 @@ function wp_audit_tool_debug_information($info) {
 
    $info = WP_Audit_Tool_Health_Check_PHP::results($info);
    $info = WP_Audit_Tool_Health_Check_Plugins_Known_Issues::results($info);
+   $info = WP_Audit_Tool_Health_Check_Non_Core_DB_Tables::results($info);
+   $info = WP_Audit_Tool_Health_Check_DB_Sizes::results($info);
    $info = WP_Audit_Tool_Health_Check_WP_Cron::results($info);
    $info = WP_Audit_Tool_Health_Check_Sys_Cron::results($info);
    $info = WP_Audit_Tool_Health_Check_Env_Variables::results($info);

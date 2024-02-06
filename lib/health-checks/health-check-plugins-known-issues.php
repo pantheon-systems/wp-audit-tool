@@ -6,14 +6,12 @@ class WP_Audit_Tool_Health_Check_Plugins_Known_Issues
 	{
 		$plugins = self::detect_plugins_with_known_issues();
 
-		$new_info = [];
-		$new_info['pantheon-problematic-plugins'] = [
+		$info['pantheon-problematic-plugins'] = [
 			'label' => __('Plugins with Known Issues on Pantheon', 'wp-audit-tool') . ' (' . count($plugins) . ')',
 			'description' => __( 'WordPress plugins that are not supported and/or require workarounds on Pantheon. See: ', 'wp-audit-tool' ) . '<a href="https://docs.pantheon.io/plugins-known-issues">docs.pantheon.io/plugins-known-issues</a>',
 			'fields' => self::format_plugin_list($plugins),
 		];
-		 // insert after "WordPress Plugins"
-		array_splice( $info, 9, 0, $new_info );
+
 		return $info;
 	}
 

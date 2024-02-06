@@ -7,15 +7,12 @@ class WP_Audit_Tool_Health_Check_Non_Core_DB_Tables
 		$db_tables = self::get_non_core_db_tables();
 		$fields = self::format_tables($db_tables);
 
-		$new_info = [];
-		$new_info['db-non-core-tables'] = [
+		$info['db-non-core-tables'] = [
 			'label' => __('Non-Core Database Tables', 'wp-audit-tool') . ' (' . count($db_tables) . ')',
 			'description' => __( 'This reports any database tables that aren\'t from WordPress core', 'wp-audit-tool' ),
 			'fields' => $fields,
 		];
 		
-		// // insert after "Database"
-		array_splice( $info, 13, 0, $new_info );
 		return $info;
 	}
 
@@ -41,6 +38,7 @@ class WP_Audit_Tool_Health_Check_Non_Core_DB_Tables
 			$fields[] = [
 				'label' => $table,
 				'value' => '',
+				'debug' => $table,
 			];
 		}
 

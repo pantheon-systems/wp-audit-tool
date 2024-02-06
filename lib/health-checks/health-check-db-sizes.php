@@ -6,15 +6,13 @@ class WP_Audit_Tool_Health_Check_DB_Sizes
 	{
 		$fields = self::get_db_tables();
 
-		$new_info = [];
-		$new_info['db-table-sizes'] = [
+		$info['db-table-sizes'] = [
 			'label' => __('Database Table Sizes', 'wp-audit-tool'),
 			'description' => __( 'This reports all database table sizes', 'wp-audit-tool' ),
+			'debug' => 'db-table-sizes',
 			'fields' => $fields,
 		];
 		
-		// // insert after "Non-Core Database Tables"
-		array_splice( $info, 14, 0, $new_info );
 		return $info;
 	}
 
@@ -48,12 +46,14 @@ class WP_Audit_Tool_Health_Check_DB_Sizes
 			$fields[] = [
 				'label' => $table,
 				'value' => self::bytes_to_human_readable_size($table_bytes),
+				'debug' => $table . ': ' . self::bytes_to_human_readable_size($table_bytes),
 			];
 		}
 
 		$fields[] = [
 			'label' => 'Total DB Size',
 			'value' => self::bytes_to_human_readable_size($total_bytes),
+			'debug' => 'Total DB size: ' . self::bytes_to_human_readable_size($total_bytes),
 		];
 
 		return $fields;

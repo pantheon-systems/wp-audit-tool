@@ -8,18 +8,18 @@ class WP_Audit_Tool_Health_Check_DB_Sizes
 
 		$info['db-table-sizes'] = [
 			'label' => __('Database Table Sizes', 'wp-audit-tool'),
-			'description' => __( 'This reports all database table sizes', 'wp-audit-tool' ),
+			'description' => __('This reports all database table sizes', 'wp-audit-tool'),
 			'debug' => 'db-table-sizes',
 			'fields' => $fields,
 		];
-		
+
 		return $info;
 	}
 
 	protected static function get_db_tables()
 	{
 		global $wpdb;
-		$db_tables = $wpdb->get_col("SHOW TABLES", 0);
+		$db_tables = $wpdb->get_col('SHOW TABLES', 0);
 
 		if (empty($db_tables)) {
 			return [
@@ -33,6 +33,7 @@ class WP_Audit_Tool_Health_Check_DB_Sizes
 		$fields = [];
 
 		$total_bytes = 0;
+
 		foreach ($db_tables as $table) {
 			$table_bytes = $wpdb->get_var(
 				$wpdb->prepare(
@@ -47,22 +48,29 @@ class WP_Audit_Tool_Health_Check_DB_Sizes
 				'label' => $table,
 				'value' => self::bytes_to_human_readable_size($table_bytes),
 				'debug' => $table . ': ' . self::bytes_to_human_readable_size($table_bytes),
+				'size' => $table_bytes,
 			];
 		}
+
+		// Sort by size - largest first
+		array_multisort(array_column($fields, 'size'), SORT_DESC, $fields);
 
 		$fields[] = [
 			'label' => 'Total DB Size',
 			'value' => self::bytes_to_human_readable_size($total_bytes),
 			'debug' => 'Total DB size: ' . self::bytes_to_human_readable_size($total_bytes),
+			'size' => $total_bytes,
 		];
 
 		return $fields;
 	}
 
-	protected static function bytes_to_human_readable_size($size){
+	protected static function bytes_to_human_readable_size($size)
+	{
 		$base = log($size) / log(1024);
-		$suffix = array("", "KB", "MB", "GB", "TB");
+		$suffix = ['', 'KB', 'MB', 'GB', 'TB'];
 		$f_base = floor($base);
+
 		return round(pow(1024, $base - floor($base)), 1) . ' ' . $suffix[$f_base];
-	  }
+	}
 }

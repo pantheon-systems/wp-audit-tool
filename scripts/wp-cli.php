@@ -138,6 +138,11 @@ class WP_Audit_Tool_CLI_Command {
     protected function format_pantheon_problematic_plugins( $format, $sectionData ) {
         $plugins = [];
         foreach($sectionData['fields'] as $field) {
+            if ($field['value'] === 'No plugins with known issues detected.') {
+                WP_CLI::line('No plugins with known issues detected.');
+                return;
+            }
+
             $plugins[] = [
                 'Plugin' => $field['label'],
                 'Severity' => $field['debug']['severity'],

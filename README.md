@@ -7,7 +7,7 @@ Pantheon's WP Audit Tool is a plugin that extends the WordPress site health with
 This plugin provides the following new site health checks:
 
 * Several additional PHP configuration items
-* Checks for plugins with known issues on Pantheon (as per https://docs.pantheon.io/plugins-known-issues)
+* Checks for plugins with known issues on Pantheon (as per https://docs.pantheon.io/plugins-known-issues), and provides information on severity (e.g. will not work on Pantheon, not recommended but works with a workaround, or works but has some caveats and workarounds)
 * Provides a list of non-standard WP DB Tables (e.g. those added by plugins or custom ones)
 * Provides a list of individual DB tables sizes
 * Provides a list of WP cron hooks and their schedules
@@ -49,11 +49,11 @@ This plugin provides a WP-CLI command to view/export all site health data:
 
 ### EXAMPLES
 
-    `wp audit`
+    wp audit
 
-    `wp audit --sections=wp-core,wp-paths-sizes`
+    wp audit --sections=wp-core,wp-paths-sizes
 
-    `wp audit --sections=pantheon-problematic-plugins,db-non-core-tables --format=json`
+    wp audit --sections=pantheon-problematic-plugins,db-non-core-tables --format=json
 
 ## Basic Script
 

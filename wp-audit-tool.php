@@ -14,3 +14,4 @@ if (!defined('ABSPATH')) {
 }
 
 require_once __DIR__ . '/lib/health-checks.php';
+require_once __DIR__ . '/scripts/wp-cli.php';

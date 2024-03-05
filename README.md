@@ -1,5 +1,8 @@
 # WordPress Audit Tool
 
+[![Unofficial Support](https://img.shields.io/badge/pantheon-Unofficial_Support-yellow?logo=pantheon&color=FFDC28)](https://pantheon.io/docs/oss-support-levels#unofficial-support)
+
+
 Pantheon's WP Audit Tool is a plugin that extends the WordPress site health with several additional health checks. It also provides several methods for easily accessing/exporting the data from the health checks.
 
 ## Site Health Checks

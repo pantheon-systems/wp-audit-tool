@@ -4,7 +4,24 @@ if ( ! defined( 'WP_CLI' ) ) {
     return;
 }
 
-  /**
+class WP_Audit_Tool_CLI_Command {
+    protected $environment;
+    protected $data;
+
+    public function __construct( ) {
+        require_once ABSPATH . 'wp-admin/includes/admin.php';
+        require_once ABSPATH . 'wp-admin/includes/update.php';
+        require_once ABSPATH . 'wp-admin/includes/class-wp-debug-data.php';
+        require_once ABSPATH . 'wp-admin/includes/class-wp-site-health.php';
+        require_once __DIR__ . '/../lib/health-checks.php';
+
+        $this->environment = wp_get_environment_type();
+        WP_Site_Health::get_instance();
+        WP_Debug_Data::check_for_updates();
+        $this->data = WP_Debug_Data::debug_data();
+    }
+	
+    /**
      * Prints the WP Site Health/Debug Data.
      *
      * ## OPTIONS
@@ -25,23 +42,6 @@ if ( ! defined( 'WP_CLI' ) ) {
      *
      * @when after_wp_load
      */
-class WP_Audit_Tool_CLI_Command {
-    protected $environment;
-    protected $data;
-
-    public function __construct( ) {
-        require_once ABSPATH . 'wp-admin/includes/admin.php';
-        require_once ABSPATH . 'wp-admin/includes/update.php';
-        require_once ABSPATH . 'wp-admin/includes/class-wp-debug-data.php';
-        require_once ABSPATH . 'wp-admin/includes/class-wp-site-health.php';
-        require_once __DIR__ . '/../lib/health-checks.php';
-
-        $this->environment = wp_get_environment_type();
-        WP_Site_Health::get_instance();
-        WP_Debug_Data::check_for_updates();
-        $this->data = WP_Debug_Data::debug_data();
-    }
-	
     public function __invoke( $args, $assoc_args ) {
         $format = WP_CLI\Utils\get_flag_value( $assoc_args, 'format', 'table' );
         $sections = WP_CLI\Utils\get_flag_value( $assoc_args, 'sections', [

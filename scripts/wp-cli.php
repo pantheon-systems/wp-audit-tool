@@ -5,7 +5,6 @@ if ( ! defined( 'WP_CLI' ) ) {
 }
 
 class WP_Audit_Tool_CLI_Command {
-    protected $environment;
     protected $data;
 
     public function __construct( ) {
@@ -15,7 +14,6 @@ class WP_Audit_Tool_CLI_Command {
         require_once ABSPATH . 'wp-admin/includes/class-wp-site-health.php';
         require_once __DIR__ . '/../lib/health-checks.php';
 
-        $this->environment = wp_get_environment_type();
         WP_Site_Health::get_instance();
         WP_Debug_Data::check_for_updates();
         $this->data = WP_Debug_Data::debug_data();

@@ -1,12 +1,13 @@
+# Managed by github-terraform — do not edit manually
 ---
 apiVersion: backstage.io/v1alpha1
 kind: Component
 metadata:
-  name: wp-audit-tool
-  description: Auto-generated catalog info for pantheon-systems/wp-audit-tool
+  name: "wp-audit-tool"
+  description: "Pantheon's WP Audit Tool is a plugin that extends the WordPress site health with several additional health checks. It also provides several methods for easily accessing/exporting the data from the health checks."
   annotations:
-    backstage.io/techdocs-ref: dir:docs/
+    "backstage.io/techdocs-ref": "dir:docs/"
 spec:
-  type: tool
-  lifecycle: mature
-  owner: site-experience
+  type: "tool"
+  lifecycle: "mature"
+  owner: "site-experience"
